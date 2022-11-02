@@ -1,0 +1,21 @@
+{
+  "id": "FBManageExternals_vvkjnn",
+  "languages": [
+    {
+      "code": "en-US",
+      "description": "English"
+    }
+  ],
+  "siteAuth": {
+    "authTypes": [
+      {
+        "id": "sso",
+        "scheme": "SSO"
+      }
+    ]
+  },
+  "siteId": "FBManageExternals_vvkjnn",
+  "cdnEnabled": true,
+  "siteProperties": [ ],
+  "applicationId": "FBManageExternals_vvkjnn"
+}
