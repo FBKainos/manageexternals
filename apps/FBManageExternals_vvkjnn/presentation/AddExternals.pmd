@@ -1,0 +1,82 @@
+{
+  "id": "AddExternals",
+  "endPoints": [
+  ],
+  "outboundData": {
+    "outboundEndPoints": [
+
+    ]
+  },
+  "presentation": {
+    "headerSize": "VPS_DEFAULT",
+    "pageType": "edit",
+    "title": {
+      "type": "title",
+      "label": "Manage Externals",
+      "enabled": false
+    },
+    "body": {
+      "type": "section",
+      "horizontal": false,
+      "children": [
+        {
+          "type": "instanceList",
+          "label": "Manager",
+          "id": "instanceListSimple",
+          "values": "<%  %>",
+          "required":true
+        },
+        {
+          "type":"text",
+          "id":"firstName",
+          "enabled":true,
+          "required":true,
+          "label":"First Name"
+        },
+        {
+          "type":"text",
+          "id":"lastName",
+          "enabled":true,
+          "required":true,
+          "label":"Last Name"
+        },
+        {
+          "type": "radioGroup",
+          "label": "Favorite flavors of cheesecake",
+          "required":true,
+          "hideDisplayOption": "false",
+          "instanceList": [
+            {
+              "descriptor": "Office-based external (e.g consultant)",
+              "id": "0"
+            },
+            {
+              "descriptor": "Field-based external (e.g installer)",
+              "id": "1"
+            }
+          ]
+        },
+        {
+          "type": "grid",
+          "id":"existingWorkers",
+          "label": "Selectable Grid",
+          "selectionEnabled": "true",
+          "isArrayOutBinding": "true",
+          "indexVariableName": "i",
+          "maxRowSelection": "2",
+          "rows": "<% [] %> ",
+          "columns": [
+            {
+              "type": "column",
+              "columnId": "0",
+              "cellTemplate": {
+                "type": "text",
+                "value": "<% i %>"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

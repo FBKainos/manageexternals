@@ -6,54 +6,75 @@
       "label": "Manage Externals"
     },
     "body": {
-      "type": "section",
+      "type": "fieldSet",
+      "id":"mainFieldSetContainer",
+      "title":"Manage Externals",
       "children": [
         {
-          "type": "section",
+          "type": "fieldSet",
+          "id":"fieldSet1",
           "horizontal":true,
-          "columnWidthRatios": [
-            0.5,
-            0.5
-          ],
+          "title":"Add Externals",
           "children": [
             {
-              "type":"section",
-              "id":"layout manage externals",
+              "type":"fieldSet",
+              "id":"fieldSet1",
+              "title":"",
               "children": [
                 {
-                  "type":"text",
-                  "label": "Manage Externals"
+                  "type":"button",
+                  "id":"layout manage externals",
+                  "action":"LINK",
+                  "label":"Add External",
+                  "taskReference": {
+                    "type":"text",
+                    "taskId": "AddExternals"
+                  }
                 }
               ]
             },
             {
               "type":"fieldSet",
-              "title":"layout manage options",
+              "id":"fieldSet2",
+              "title":"Change Externals",
               "children": [
                 {
                   "type":"fieldSet",
-                  "label": "Externals",
+                  "label": "fieldSet2",
+                  "title":"Change Externals",
                   "children": [
                     {
-                      "type": "externalLink",
-                      "descriptor": "Change Externals",
-                      "url": "https://developer.workday.com/documentation/xax1529989124469/presentation"
+                      "type": "button",
+                      "action":"LINK",
+                      "label":"Request External Worker Transfer"
+                    },
+                    {
+                      "type":"text",
+                      "value":"Use this request the transfer of an External Worker into your team."
+                    },
+                    {
+                      "type": "button",
+                      "action":"LINK",
+                      "label":"Change External´s Contract"
+                    },
+                    {
+                      "type":"text",
+                      "value":"Use this to change External Worker´s contract start and end date. External Worker will automatically be termined after contract end date."
+                    },
+                    {
+                      "type": "button",
+                      "action":"LINK",
+                      "label":"Request External Worker Transfer"
+                    },
+                    {
+                      "type":"text",
+                      "value":"Use this to change External Worker´s mobile phone and external company email address."
                     }
                   ]
                 }
               ]
             }
           ]
-        }
-      ]
-    },
-    "footer": {
-      "type": "footer",
-      "children": [
-        {
-          "type": "richText",
-          "enabled": "false",
-          "value": " "
         }
       ]
     }
