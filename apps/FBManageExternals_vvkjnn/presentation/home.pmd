@@ -3,16 +3,47 @@
   "presentation": {
     "title": {
       "type": "title",
-      "label": "Workday Extend"
+      "label": "Manage Externals"
     },
     "body": {
       "type": "section",
       "children": [
         {
-          "type": "richText",
-          "id": "hello",
-          "label": "Hello World!",
-          "value": "Welcome to your <b>Workday Extend</b> App. Deployed by the Workday Extend Plugin for IntelliJ."
+          "type": "section",
+          "horizontal":true,
+          "columnWidthRatios": [
+            0.5,
+            0.5
+          ],
+          "children": [
+            {
+              "type":"section",
+              "id":"layout manage externals",
+              "children": [
+                {
+                  "type":"text",
+                  "label": "Manage Externals"
+                }
+              ]
+            },
+            {
+              "type":"fieldSet",
+              "title":"layout manage options",
+              "children": [
+                {
+                  "type":"fieldSet",
+                  "label": "Externals",
+                  "children": [
+                    {
+                      "type": "externalLink",
+                      "descriptor": "Change Externals",
+                      "url": "https://developer.workday.com/documentation/xax1529989124469/presentation"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
         }
       ]
     },
@@ -22,7 +53,7 @@
         {
           "type": "richText",
           "enabled": "false",
-          "value": "Powered By Workday Extend"
+          "value": " "
         }
       ]
     }
