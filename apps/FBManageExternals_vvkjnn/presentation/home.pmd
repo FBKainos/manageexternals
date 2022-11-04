@@ -12,7 +12,7 @@
       "children": [
         {
           "type": "fieldSet",
-          "id":"fieldSet1",
+          "id":"fieldSetMain",
           "horizontal":true,
           "title":"Add Externals",
           "children": [

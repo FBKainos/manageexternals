@@ -1,10 +1,34 @@
 {
   "id": "AddExternals",
   "endPoints": [
+    {
+      "name": "me",
+      "baseUrlType": "workday-staffing",
+      "url": "workers/me",
+      "authType": "sso"
+    }
   ],
   "outboundData": {
     "outboundEndPoints": [
-
+      {
+        "type": "outboundVariable",
+        "name": "sampleFlowVariables",
+        "variableScope": "flow",
+        "values": [
+          {
+            "outboundPath": "workerFirstName",
+              "value": "<% firstName.value %>"
+          },
+          {
+            "outboundPath": "workerLastName",
+            "value": "<% lastName.value %>"
+          },
+          {
+            "outboundPath": "isManager",
+            "value": "<% checkBoxId.value %>"
+          }
+        ]
+      }
     ]
   },
   "presentation": {
@@ -31,7 +55,8 @@
           "id":"firstName",
           "enabled":true,
           "required":true,
-          "label":"First Name"
+          "label":"First Name",
+          "value":"<% flowVariables.workerFirstName %>"
         },
         {
           "type":"text",
@@ -68,7 +93,39 @@
           "columns": [
             {
               "type": "column",
-              "columnId": "0",
+              "columnId": "Status",
+              "cellTemplate": {
+                "type": "text",
+                "value": "<% i %>"
+              }
+            },
+            {
+              "type": "column",
+              "columnId": "WorkerId",
+              "cellTemplate": {
+                "type": "text",
+                "value": "<% i %>"
+              }
+            },
+            {
+              "type": "column",
+              "columnId": "FirstName",
+              "cellTemplate": {
+                "type": "text",
+                "value": "<% i %>"
+              }
+            },
+            {
+              "type": "column",
+              "columnId": "LastName",
+              "cellTemplate": {
+                "type": "text",
+                "value": "<% i %>"
+              }
+            },
+            {
+              "type": "column",
+              "columnId": "Manager",
               "cellTemplate": {
                 "type": "text",
                 "value": "<% i %>"
