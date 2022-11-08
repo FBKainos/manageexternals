@@ -6,13 +6,19 @@
       "baseUrlType": "workday-staffing",
       "url": "workers/me",
       "authType": "sso"
+    },
+    {
+      "name":"addManagers",
+      "baseUrlType":"workday-wql",
+      "url":"<% '/data?query=' + ('SELECT worker, manager_Level01, managementLevel FROM workersForHCMReporting (dataSourceFilter = allActiveWorkers) WHERE worker =' + me.id).pathEncode() %>",
+      "authType": "sso"
     }
   ],
   "outboundData": {
     "outboundEndPoints": [
       {
         "type": "outboundVariable",
-        "name": "sampleFlowVariables",
+        "name": "workersFlowVariables",
         "variableScope": "flow",
         "values": [
           {
@@ -24,8 +30,12 @@
             "value": "<% lastName.value %>"
           },
           {
-            "outboundPath": "isManager",
-            "value": "<% checkBoxId.value %>"
+            "outboundPath": "workerContingentWorkerType",
+            "value": "<% contingentWorkerType.value %>"
+          },
+          {
+            "outboundPath":"managerName",
+            "value":"<% instanceListSimple.selectedEntries[0].descriptor %>"
           }
         ]
       }
@@ -47,7 +57,9 @@
           "type": "instanceList",
           "label": "Manager",
           "id": "instanceListSimple",
-          "values": "<%  %>",
+          "multiSelect":false,
+          "values": "<% [addManagers.data[0].manager_Level01] %>",
+          "selectedValuesAndDescriptors": "<% [addManagers.data[0].manager_Level01] %>",
           "required":true
         },
         {
@@ -55,8 +67,7 @@
           "id":"firstName",
           "enabled":true,
           "required":true,
-          "label":"First Name",
-          "value":"<% flowVariables.workerFirstName %>"
+          "label":"First Name"
         },
         {
           "type":"text",
@@ -67,17 +78,18 @@
         },
         {
           "type": "radioGroup",
-          "label": "Favorite flavors of cheesecake",
+          "id":"contingentWorkerType",
+          "label": "Contingent Worker Type",
           "required":true,
           "hideDisplayOption": "false",
           "instanceList": [
             {
               "descriptor": "Office-based external (e.g consultant)",
-              "id": "0"
+              "id": "Office-based external (e.g consultant)"
             },
             {
               "descriptor": "Field-based external (e.g installer)",
-              "id": "1"
+              "id": "Field-based external (e.g installer)"
             }
           ]
         },

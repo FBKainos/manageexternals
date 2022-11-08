@@ -1,0 +1,158 @@
+{
+  "id": "ContingentWorkerDetails",
+  "endPoints": [
+    {
+      "name": "me",
+      "baseUrlType": "workday-staffing",
+      "url": "workers/me",
+      "authType": "sso"
+    },
+    {
+      "name":"phoneCodes",
+      "baseUrlType":"reference-data",
+      "url":"<% ('/country_phone_code/vers/latest/search?q=' + instanceListQuery).pathEncode() %>",
+      "authType": "sso",
+      "deferred":true,
+      "exclude":"<% empty(instanceListQuery) %>"
+    }
+  ],
+  "outboundData": {
+    "outboundEndPoints": [
+      {
+        "type": "outboundVariable",
+        "name": "workersFlowVariables",
+        "variableScope": "flow",
+        "values": [
+          {
+            "outboundPath": "workerFirstName",
+            "value": "<% firstName.value %>"
+          },
+          {
+            "outboundPath": "workerLastName",
+            "value": "<% lastName.value %>"
+          },
+          {
+            "outboundPath": "workerContingentWorkerType",
+            "value": "<% contingentWorkerType.value %>"
+          }
+        ]
+      }
+    ]
+  },
+  "presentation": {
+    "headerSize": "VPS_DEFAULT",
+    "pageType": "edit",
+    "title": {
+      "type": "title",
+      "label": "Workday Extend",
+      "enabled": false
+    },
+    "body": {
+      "type": "fieldSet",
+      "id":"fieldSetContainer",
+      "horizontal": true,
+      "children": [
+        {
+          "type": "fieldSet",
+          "id": "mainFieldSet",
+          "horizontal": true,
+          "title":"Personal Information",
+          "children":[
+            {
+              "type": "fieldSet",
+              "id": "firstFieldSet",
+              "title":"",
+              "children":[
+                {
+                  "type":"text",
+                  "label":"First Name",
+                  "value":"<% flowVariables.workerFirstName %>",
+                  "enabled":false
+                },
+                {
+                  "type":"text",
+                  "value":"<% flowVariables.workerLastName %>",
+                  "label":"Last Name",
+                  "enabled":false
+                },
+                {
+                  "type": "date",
+                  "label":"Contract Start Date",
+                  "id":"startDate",
+                  "dateDisplayPattern": "MM-dd-yyyy",
+                  "datePrecision": "DAY",
+                  "required":true
+                },
+                {
+                  "type": "date",
+                  "id":"endDate",
+                  "label":"Contract End Date",
+                  "dateDisplayPattern": "MM-dd-yyyy",
+                  "datePrecision": "DAY",
+                  "required":true
+                },
+                {
+                  "type": "instanceList",
+                  "label": "Country code for Mobile phone number (Please select the country in case the external has a work mobile phone)",
+                  "id": "instanceListPhone",
+                  "multiSelect":false,
+                  "values": "<% [] %>",
+                  "searchEndPoint":"<% endpoints.phoneCodes %>",
+                  "searchResultValues":"<% phoneCodes.items %>",
+                  "displayKey":"phoneCode",
+                  "idKey":"country",
+                  "required":false
+                },
+                {
+                  "type":"text",
+                  "id":"externalCompany",
+                  "enabled":true,
+                  "required":false,
+                  "label":"External Company Email (In case external will not get kone,com e-mail please fill in here external´s current company e-mail address)"
+                }
+              ]
+            },
+            {
+              "type":"fieldSet",
+              "id":"secondFieldSet",
+              "title":"Organizational Data",
+              "children":[
+                {
+                  "type":"text",
+                  "label":"Type",
+                  "value":"<% flowVariables.workerContingentWorkerType %>",
+                  "enabled":false
+                },
+                {
+                  "type":"text",
+                  "label":"Manager",
+                  "value":"<% flowVariables.managerName %>",
+                  "enabled":false
+                },
+                {
+                  "type": "instanceList",
+                  "label": "Job Profile",
+                  "id": "jobProfile",
+                  "multiSelect":false,
+                  "values": "<% [] %>",
+                  "searchEndPoint":"<% endpoints.phoneCodes %>",
+                  "searchResultValues":"<% phoneCodes.items %>",
+                  "displayKey":"phoneCode",
+                  "idKey":"country",
+                  "required":false
+                },
+                {
+                  "type":"text",
+                  "id":"jobTitle",
+                  "enabled":true,
+                  "required":false,
+                  "label":"External Company Email (In case external will not get kone,com e-mail please fill in here external´s current company e-mail address)"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

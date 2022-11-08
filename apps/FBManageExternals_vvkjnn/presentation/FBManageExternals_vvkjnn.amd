@@ -21,6 +21,13 @@
       "page": {
         "id": "AddExternals"
       }
+    },
+    {
+      "id": "ContingentWorkerDetails",
+      "routingPattern": "ContingentWorkerDetails",
+      "page": {
+        "id": "ContingentWorkerDetails"
+      }
     }
   ],
   "applicationId": "FBManageExternals_vvkjnn",
@@ -48,6 +55,34 @@
     {
       "key": "workday-wql",
       "value": "https://api.workday.com/wql/v1/"
+    },
+    {
+      "key": "reference-data",
+      "value": "https://api.workday.com/referenceData"
+    }
+  ],
+  "flowDefinitions": [
+    {
+      "id": "flowHireExternalWorkers",
+      "flowSteps": [
+        {
+          "taskId": "AddExternals",
+          "id": "orderA",
+          "startsFlow": true,
+          "transitions": [
+            {
+              "order": "a",
+              "value": "orderB",
+              "condition": true
+            }
+          ]
+        },
+        {
+          "taskId": "ContingentWorkerDetails",
+          "id": "orderB",
+          "endsFlow": true
+        }
+      ]
     }
   ]
 }
